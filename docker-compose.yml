@@ -1,0 +1,28 @@
+services:
+  qmd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: qmd:latest
+    container_name: qmd-server
+    # restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - MCP_TRANSPORT=http
+      - QMD_PORT=3000
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - QMD_EMBEDDING_MODEL=${QMD_EMBEDDING_MODEL:-openai/text-embedding-3-small}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${QMD_KB_PATH:-./kb}:/app/kb:ro
+      - ${QMD_CACHE_PATH:-./data}:/root/.cache/qmd
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# SQLite database stored in ${QMD_CACHE_PATH:-./data}/qmd.db

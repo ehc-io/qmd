@@ -1,0 +1,19 @@
+{
+  "name": "qmd",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/qmd.ts",
+    "build": "bun build src/qmd.ts --outdir dist --target bun",
+    "start": "bun run dist/qmd.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.24.0",
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  }
+}

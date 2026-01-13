@@ -1,0 +1,37 @@
+# Environment variables (contains secrets)
+.env
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# SQLite database
+*.db
+*.db-wal
+*.db-shm
+
+# Cache directories
+.cache/
+data/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Bun
+bun.lockb
+
+# KB
+kb/**

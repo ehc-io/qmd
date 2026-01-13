@@ -1,0 +1,16 @@
+services:
+  qmd:
+    build:
+      target: development
+    environment:
+      - MCP_TRANSPORT=http
+      - QMD_DEBUG=true
+    volumes:
+      - ./src:/app/src:ro
+      - ${QMD_KB_PATH:-./kb}:/app/kb:ro
+      - qmd-cache:/root/.cache/qmd
+    ports:
+      - "3000:3000"
+
+volumes:
+  qmd-cache:
